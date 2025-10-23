@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome - Ícones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .icon-size-demo {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            align-items: flex-end;
+        }
+
+        .icon-size-demo i {
+            color: #186fad;
+        }
+
+        .icon-colors {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .icon-color-item {
+            text-align: center;
+        }
+
+        .icon-color-item i {
+            font-size: 2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .heart { color: #e74c3c; }
+        .star { color: #f39c12; }
+        .check { color: #5cb85c; }
+        .alert { color: #e67e22; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Font Awesome - Ícones em CSS</h1>
+
+        <div class="exemplo">
+            <h2>Ícones Básicos</h2>
+            <p class="exemplo-descricao">Font Awesome oferece milhares de ícones</p>
+            <div class="icon-showcase">
+                <div class="icon-item">
+                    <i class="fas fa-heart"></i>
+                    <p>Heart</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-star"></i>
+                    <p>Star</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-user"></i>
+                    <p>User</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-cog"></i>
+                    <p>Cog</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-check"></i>
+                    <p>Check</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-times"></i>
+                    <p>Times</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Tamanhos Diferentes</h2>
+            <p class="exemplo-descricao">Ícones em vários tamanhos</p>
+            <div class="icon-size-demo">
+                <i class="fas fa-heart" style="font-size: 1em;"></i>
+                <i class="fas fa-heart" style="font-size: 1.5em;"></i>
+                <i class="fas fa-heart" style="font-size: 2em;"></i>
+                <i class="fas fa-heart" style="font-size: 2.5em;"></i>
+                <i class="fas fa-heart" style="font-size: 3em;"></i>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Ícones com Cores</h2>
+            <p class="exemplo-descricao">Customizando cores dos ícones</p>
+            <div class="icon-colors">
+                <div class="icon-color-item">
+                    <i class="fas fa-heart heart"></i>
+                    <p>Heart</p>
+                </div>
+                <div class="icon-color-item">
+                    <i class="fas fa-star star"></i>
+                    <p>Star</p>
+                </div>
+                <div class="icon-color-item">
+                    <i class="fas fa-check check"></i>
+                    <p>Check</p>
+                </div>
+                <div class="icon-color-item">
+                    <i class="fas fa-exclamation-triangle alert"></i>
+                    <p>Alert</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Botões com Ícones</h2>
+            <p class="exemplo-descricao">Ícones em botões para melhor UX</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <button class="icon-button">
+                    <i class="fas fa-heart"></i>
+                    Like
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-download"></i>
+                    Download
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-trash"></i>
+                    Delete
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-share"></i>
+                    Share
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </button>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Social Icons (Brands)</h2>
+            <p class="exemplo-descricao">Ícones de marcas sociais</p>
+            <div style="display: flex; gap: 20px; font-size: 2em;">
+                <a href="#" style="color: #630d60;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color: #1da1f2;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color: #e1306c;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: #25d366;"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" style="color: #ff0000;"><i class="fab fa-youtube"></i></a>
+                <a href="#" style="color: #c21515;"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

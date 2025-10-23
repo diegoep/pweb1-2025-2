@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários com Validação</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-container {
+            max-width: 600px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .required-mark {
+            color: #d9534f;
+            margin-left: 4px;
+        }
+
+        .form-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .form-status.success {
+            background-color: #dff0d8;
+            border: 1px solid #5cb85c;
+            color: #3c763d;
+            display: block;
+        }
+
+        .form-status.error {
+            background-color: #f2dede;
+            border: 1px solid #d9534f;
+            color: #a94442;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulários com Validação</h1>
+
+        <div class="exemplo">
+            <h2>Formulário Básico</h2>
+            <p class="exemplo-descricao">Exemplo com diferentes tipos de inputs</p>
+
+            <div class="form-container">
+                <form id="basicForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo <span class="required-mark">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email <span class="required-mark">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(XX) 9XXXX-XXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha <span class="required-mark">*</span></label>
+                        <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres" required minlength="8">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmar Senha <span class="required-mark">*</span></label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirme a senha" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">Biografia</label>
+                        <textarea id="bio" name="bio" placeholder="Conte um pouco sobre você..." rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Departamento <span class="required-mark">*</span></label>
+                        <select id="department" name="department" required>
+                            <option value="">-- Selecione um departamento --</option>
+                            <option value="ti">TI</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="vendas">Vendas</option>
+                            <option value="rh">RH</option>
+                            <option value="financeiro">Financeiro</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button type="submit" style="margin-right: 10px;">Enviar</button>
+                        <button type="reset" style="background-color: #999;">Limpar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Estados de Validação</h2>
+            <p class="exemplo-descricao">Focus, válido, inválido, desabilitado</p>
+
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="valid-input">Input Válido (Email correto)</label>
+                    <input type="email" id="valid-input" value="usuario@email.com" readonly style="background-color: #ecf8ec; border-color: #5cb85c;">
+                    <div class="form-success">✓ Válido</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="invalid-input">Input Inválido (Email incorreto)</label>
+                    <input type="email" id="invalid-input" value="isso-nao-e-email" style="background-color: #fff5f5; border-color: #d9534f;">
+                    <div class="form-error">✗ Formato inválido</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="focus-input">Input em Focus (Clique aqui)</label>
+                    <input type="text" id="focus-input" placeholder="Clique para ver o efeito de focus">
+                </div>
+
+                <div class="form-group">
+                    <label for="disabled-input">Input Desabilitado</label>
+                    <input type="text" id="disabled-input" value="Não pode ser editado" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Formulário com Validação e Feedback</h2>
+            <p class="exemplo-descricao">Exemplo mais realista com validação condicional</p>
+
+            <div class="form-container">
+                <form id="validateForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="user-email">Email de Usuário <span class="required-mark">*</span></label>
+                        <input type="email" id="user-email" name="user-email" placeholder="seu@email.com" required>
+                        <div class="form-error" style="display: none;">Email inválido</div>
+                        <div class="form-success" style="display: none;">✓ Email válido</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-password">Senha Forte <span class="required-mark">*</span></label>
+                        <input type="password" id="user-password" name="user-password" placeholder="Mínimo 8 caracteres, números e símbolos" required>
+                        <div class="form-error" style="display: none;">Senha muito fraca</div>
+                        <div class="form-success" style="display: none;">✓ Senha forte</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required>
+                            Concordo com os <a href="#" style="color: #186fad;">Termos de Serviço</a> <span class="required-mark">*</span>
+                        </label>
+                    </div>
+
+                    <button type="submit">Criar Conta</button>
+
+                    <div id="formStatus" class="form-status">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Validação de email em tempo real
+        const userEmailInput = document.getElementById('user-email');
+        if (userEmailInput) {
+            userEmailInput.addEventListener('input', function() {
+                const isValid = this.value.includes('@') && this.value.includes('.');
+                const errorMsg = this.parentElement.querySelector('.form-error');
+                const successMsg = this.parentElement.querySelector('.form-success');
+
+                if (isValid) {
+                    errorMsg.style.display = 'none';
+                    successMsg.style.display = 'block';
+                } else if (this.value) {
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                } else {
+                    errorMsg.style.display = 'none';
+                    successMsg.style.display = 'none';
+                }
+            });
+        }
+
+        // Validação de senha
+        const userPasswordInput = document.getElementById('user-password');
+        if (userPasswordInput) {
+            userPasswordInput.addEventListener('input', function() {
+                const isStrong = this.value.length >= 8 && /[0-9]/.test(this.value) && /[!@#$%^&*]/.test(this.value);
+                const errorMsg = this.parentElement.querySelector('.form-error');
+                const successMsg = this.parentElement.querySelector('.form-success');
+
+                if (isStrong) {
+                    errorMsg.style.display = 'none';
+                    successMsg.style.display = 'block';
+                } else if (this.value) {
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                } else {
+                    errorMsg.style.display = 'none';
+                    successMsg.style.display = 'none';
+                }
+            });
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const formStatus = document.getElementById('formStatus');
+            formStatus.innerHTML = '✓ Formulário enviado com sucesso!';
+            formStatus.classList.remove('error');
+            formStatus.classList.add('success');
+        }
+    </script>
+</body>
+</html>

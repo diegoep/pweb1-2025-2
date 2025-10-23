@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsividade e Mobile First</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Mobile first */
+        .responsive-section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .responsive-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .responsive-card-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #186fad, #22acd5);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+        }
+
+        .size-indicator {
+            background-color: #186fad;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Tablet em diante */
+        @media (min-width: 768px) {
+            .responsive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop em diante */
+        @media (min-width: 1024px) {
+            .responsive-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Breakpoints customizados */
+        @media (max-width: 480px) {
+            .hide-mobile {
+                display: none;
+            }
+            .size-indicator::before {
+                content: "📱 Mobile (até 480px) ";
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 767px) {
+            .hide-tablet {
+                display: none;
+            }
+            .size-indicator::before {
+                content: "📱 Tablet (481px - 767px) ";
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hide-tablet-lg {
+                display: none;
+            }
+            .size-indicator::before {
+                content: "🖥️ Tablet Landscape (768px - 1023px) ";
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hide-desktop {
+                display: none;
+            }
+            .size-indicator::before {
+                content: "🖥️ Desktop (1024px+) ";
+            }
+        }
+
+        /* Unidades relativas */
+        .fluid-sizing {
+            font-size: clamp(1.2rem, 5vw, 2rem);
+            margin: 20px 0;
+            color: #186fad;
+            font-weight: bold;
+        }
+
+        /* Porcentagens */
+        .width-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .width-box {
+            background-color: #22acd5;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .w-25 { width: 25%; }
+        .w-50 { width: 50%; }
+        .w-75 { width: 75%; }
+        .w-100 { width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Responsividade e Mobile First</h1>
+
+        <div class="exemplo">
+            <h2>Indicador de Breakpoint</h2>
+            <p class="exemplo-descricao">Redimensione a janela para ver qual breakpoint está ativo</p>
+            <div class="size-indicator"></div>
+            <p style="text-align: center; color: #666;">
+                Abra o DevTools (F12) e veja como o layout muda com a largura da tela
+            </p>
+        </div>
+
+        <div class="exemplo">
+            <h2>Grid Responsivo (Mobile First)</h2>
+            <p class="exemplo-descricao">
+                Começa com 1 coluna (mobile), 2 no tablet (768px+), 3 no desktop (1024px+)
+            </p>
+            <div class="responsive-grid">
+                <div class="responsive-card">
+                    <div class="responsive-card-img">1</div>
+                    <h3>Card 1</h3>
+                    <p>Conteúdo do primeiro card</p>
+                </div>
+                <div class="responsive-card">
+                    <div class="responsive-card-img">2</div>
+                    <h3>Card 2</h3>
+                    <p>Conteúdo do segundo card</p>
+                </div>
+                <div class="responsive-card">
+                    <div class="responsive-card-img">3</div>
+                    <h3>Card 3</h3>
+                    <p>Conteúdo do terceiro card</p>
+                </div>
+                <div class="responsive-card">
+                    <div class="responsive-card-img">4</div>
+                    <h3>Card 4</h3>
+                    <p>Conteúdo do quarto card</p>
+                </div>
+                <div class="responsive-card">
+                    <div class="responsive-card-img">5</div>
+                    <h3>Card 5</h3>
+                    <p>Conteúdo do quinto card</p>
+                </div>
+                <div class="responsive-card">
+                    <div class="responsive-card-img">6</div>
+                    <h3>Card 6</h3>
+                    <p>Conteúdo do sexto card</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Typography Fluida com clamp()</h2>
+            <p class="exemplo-descricao">Tamanho de fonte que se adapta automaticamente (mínimo, ideal, máximo)</p>
+            <div class="fluid-sizing">
+                Este texto se redimensiona automaticamente com a viewport!
+            </div>
+            <p style="color: #666; font-size: 0.9em;">
+                Usando: <code style="background: #f5f5f5; padding: 2px 6px;">font-size: clamp(1.2rem, 5vw, 2rem)</code>
+            </p>
+        </div>
+
+        <div class="exemplo">
+            <h2>Unidades Relativas</h2>
+            <p class="exemplo-descricao">Usando porcentagens para layouts flexíveis</p>
+            <div class="width-demo">
+                <div class="width-box w-25">25%</div>
+                <div class="width-box w-50">50%</div>
+                <div class="width-box w-75">75%</div>
+                <div class="width-box w-100">100%</div>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Media Queries - Controle Fino</h2>
+            <p class="exemplo-descricao">Diferentes visibilidades em diferentes tamanhos de tela</p>
+            <div style="background-color: white; padding: 20px; border-radius: 4px;">
+                <div class="hide-mobile">ℹ️ Este elemento está oculto em mobile</div>
+                <div class="hide-tablet">ℹ️ Este elemento está oculto em tablet</div>
+                <div class="hide-tablet-lg">ℹ️ Este elemento está oculto em tablet landscape</div>
+                <div class="hide-desktop">ℹ️ Este elemento está oculto em desktop</div>
+                <p style="margin-top: 15px; color: #666;">
+                    Abra em diferentes tamanhos de tela para ver as mudanças!
+                </p>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>Boas Práticas Mobile First</h2>
+            <p class="exemplo-descricao">Como estruturar CSS para responsividade</p>
+            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 4px; border-left: 4px solid #22acd5;">
+                <h3 style="margin-top: 0;">1. Comece Mobile</h3>
+                <pre style="overflow-x: auto; background: white; padding: 10px; border-radius: 4px;">/* CSS base para mobile */
+.container {
+  display: flex;
+  flex-direction: column;
+}</pre>
+
+                <h3>2. Adicione Media Queries</h3>
+                <pre style="overflow-x: auto; background: white; padding: 10px; border-radius: 4px;">/* Para tablet em diante */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+}</pre>
+
+                <h3>3. Teste em Múltiplos Dispositivos</h3>
+                <ul>
+                    <li>DevTools - Device Simulation</li>
+                    <li>Navegadores reais</li>
+                    <li>Testar velocidade (throttling)</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

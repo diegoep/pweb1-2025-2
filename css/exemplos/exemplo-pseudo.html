@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo-classes e Pseudo-elementos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pseudo-classes e Pseudo-elementos</h1>
+
+        <div class="exemplo">
+            <h2>:hover - Hover nos Links</h2>
+            <p class="exemplo-descricao">Passe o mouse sobre os links para ver o efeito</p>
+            <div class="pseudo-links">
+                <a href="#" class="pseudo-link">Link 1</a>
+                <a href="#" class="pseudo-link">Link 2</a>
+                <a href="#" class="pseudo-link">Link 3</a>
+            </div>
+        </div>
+
+        <div class="exemplo">
+            <h2>:focus - Focus em Botões</h2>
+            <p class="exemplo-descricao">Clique no botão e pressione Tab para ver o outline de focus</p>
+            <button class="pseudo-button">Botão 1</button>
+            <button class="pseudo-button">Botão 2</button>
+            <button class="pseudo-button">Botão 3</button>
+        </div>
+
+        <div class="exemplo">
+            <h2>:first-child e :last-child</h2>
+            <p class="exemplo-descricao">Primeira e última item têm cores diferentes</p>
+            <ul class="pseudo-list">
+                <li>Primeiro item</li>
+                <li>Item do meio</li>
+                <li>Outro item</li>
+             <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+                <li>Outro item</li>
+
+                <li>Último item</li>
+            </ul>
+        </div>
+
+        <div class="exemplo">
+            <h2>::first-letter e ::first-line</h2>
+            <p class="exemplo-descricao">Primeira letra e primeira linha estão destacadas</p>
+            <p class="pseudo-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+
+        <div class="exemplo">
+            <h2>::before e ::after</h2>
+            <p class="exemplo-descricao">Conteúdo adicionado via CSS (veja com F12)</p>
+            <style>
+                .before-example::before {
+                    content: "✓ Elemento Legal: ";
+                    color: #5cb85c;
+                    font-weight: bold;
+                    font-size: 1.2em;
+                }
+                .after-example::after {
+                    content: " ←";
+                    color: #22acd5;
+                    font-weight: bold;
+                }
+            </style>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+            <p class="before-example">Isto tem um ícone de check antes</p>
+
+            <p class="after-example">Isto tem uma seta depois</p>
+        </div>
+
+    </div>
+</body>
+</html>
