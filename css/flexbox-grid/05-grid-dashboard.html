@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid - Dashboard Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f1419;
+            color: #e0e0e0;
+        }
+
+        /* Layout Principal com Grid */
+        .layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: auto 1fr;
+            min-height: 100vh;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        header .user {
+            color: white;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        header .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        /* Sidebar */
+        aside {
+            background: #1a1f2e;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            color: #b0b0b0;
+        }
+
+        .nav-item:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-item .icon {
+            font-size: 20px;
+        }
+
+        /* Main Content */
+        main {
+            grid-column: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            align-content: start;
+        }
+
+        /* Card Styles */
+        .card {
+            background: linear-gradient(135deg, #1a1f2e 0%, #252d3d 100%);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .card.wide {
+            grid-column: span 2;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card .number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 15px 0;
+        }
+
+        .card .subtext {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .card.full {
+            grid-column: 1 / -1;
+        }
+
+        /* Stat Card */
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .stat:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .stat-value {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Chart Mock */
+        .chart {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            align-items: flex-end;
+            height: 150px;
+            margin: 15px 0;
+        }
+
+        .bar {
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 4px 4px 0 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.05);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .badge.green {
+            background: #4caf50;
+        }
+
+        .badge.orange {
+            background: #ff9800;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .card.wide {
+                grid-column: 1;
+            }
+
+            main {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                grid-column: 1;
+            }
+
+            aside {
+                display: flex;
+                gap: 10px;
+                overflow-x: auto;
+                padding: 15px;
+            }
+
+            .nav-item {
+                flex-shrink: 0;
+                width: auto;
+                margin-bottom: 0;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        .info-box {
+            background: #1a1f2e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-left: 4px solid #764ba2;
+        }
+
+        .info-box h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        .info-box code {
+            background: #0f1419;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+            font-size: 13px;
+        }
+
+        pre {
+            background: #0f1419;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         EXEMPLO DASHBOARD (Slide 1235-1294)
+         ============================================ -->
+    <!-- Layout com Grid -->
+    <div class="layout">
+        <!-- Header -->
+        <header>
+            <h1>📊 Dashboard</h1>
+            <div class="user">
+                <span>Olá, Diego</span>
+                <div class="avatar">👤</div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside>
+            <div class="nav-item active">
+                <span class="icon">📈</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">👥</span>
+                <span>Usuários</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>Configurações</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">📋</span>
+                <span>Relatórios</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">🔔</span>
+                <span>Notificações</span>
+            </div>
+        </aside>
+
+        <!-- Main Content com Grid -->
+        <main>
+            <!-- Card 1: Visitors -->
+            <div class="card">
+                <h3>👥 Visitantes</h3>
+                <div class="number">12,453</div>
+                <div class="subtext">+5% vs mês anterior</div>
+            </div>
+
+            <!-- Card 2: Revenue -->
+            <div class="card">
+                <h3>💰 Receita</h3>
+                <div class="number">$45.2K</div>
+                <div class="subtext">+12% vs mês anterior</div>
+            </div>
+
+            <!-- Card 3: Conversão -->
+            <div class="card">
+                <h3>🎯 Conversão</h3>
+                <div class="number">3.2%</div>
+                <div class="subtext">-0.5% vs mês anterior</div>
+            </div>
+
+            <!-- Card 4: Gráfico (Wide) -->
+            <div class="card wide">
+                <h3>📊 Gráfico Semanal</h3>
+                <div class="chart">
+                    <div class="bar" style="height: 60%;"></div>
+                    <div class="bar" style="height: 75%;"></div>
+                    <div class="bar" style="height: 45%;"></div>
+                    <div class="bar" style="height: 90%;"></div>
+                    <div class="bar" style="height: 70%;"></div>
+                    <div class="bar" style="height: 85%;"></div>
+                    <div class="bar" style="height: 95%;"></div>
+                </div>
+            </div>
+
+            <!-- Card 5: Estatísticas -->
+            <div class="card">
+                <h3>📈 Estatísticas</h3>
+                <div class="stat">
+                    <div class="stat-label">Click-through</div>
+                    <div class="stat-value">8.5%</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Bounce Rate</div>
+                    <div class="stat-value">32.1%</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Sessões</div>
+                    <div class="stat-value">5.2K</div>
+                </div>
+            </div>
+
+            <!-- Card 6: Status -->
+            <div class="card">
+                <h3>🔴 Status</h3>
+                <div style="margin-top: 15px;">
+                    <div><span class="badge green">OK</span> API Server</div>
+                    <div style="margin-top: 8px;"><span class="badge green">OK</span> Database</div>
+                    <div style="margin-top: 8px;"><span class="badge orange">WARN</span> Cache</div>
+                </div>
+            </div>
+
+            <!-- Card 7: Info (Full width) -->
+            <div class="card full">
+                <h3>💡 Grid Structure</h3>
+                <p style="color: #888; font-size: 14px; line-height: 1.6; margin-bottom: 15px;">
+                    Este dashboard usa CSS Grid para criar um layout responsivo. A estrutura:
+                </p>
+                <div style="background: #0f1419; padding: 15px; border-radius: 8px; overflow-x: auto;">
+                    <pre><code>.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
+}
+
+/* Header em toda a largura */
+header {
+  grid-column: 1 / -1;
+}
+
+/* Sidebar fixa */
+aside {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* Main com grid responsivo */
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Card largo */
+.card.wide {
+  grid-column: span 2;
+}</code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Explicação -->
+    <div style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <div class="info-box">
+            <h3>📐 Como Este Layout Funciona</h3>
+            <p style="color: #b0b0b0; line-height: 1.6; margin-bottom: 15px;">
+                O dashboard acima demonstra um uso prático de CSS Grid. A página usa:
+            </p>
+            <ul style="margin-left: 20px; color: #b0b0b0; line-height: 1.8;">
+                <li><strong>Grid externo:</strong> Layout de 2 colunas (sidebar + main)</li>
+                <li><strong>Header:</strong> Ocupa ambas as colunas com <code>grid-column: 1 / -1</code></li>
+                <li><strong>Sidebar:</strong> Largura fixa de 250px</li>
+                <li><strong>Main:</strong> Outro grid responsivo com <code>repeat(auto-fit, minmax(300px, 1fr))</code></li>
+                <li><strong>Cards:</strong> Se adaptam automaticamente ao tamanho da tela</li>
+                <li><strong>Wide cards:</strong> Ocupam 2 colunas com <code>grid-column: span 2</code></li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>✨ Vantagens Este Design</h3>
+            <ul style="margin-left: 20px; color: #b0b0b0; line-height: 1.8;">
+                <li>✅ Totalmente responsivo sem media queries complexas</li>
+                <li>✅ Sidebar fixa, conteúdo fluido</li>
+                <li>✅ Cards se reorganizam conforme o espaço</li>
+                <li>✅ Mantém proporções em qualquer dispositivo</li>
+                <li>✅ Fácil de manter e modificar</li>
+            </ul>
+        </div>
+
+        <p style="text-align: center; color: #666; margin-top: 40px; padding-top: 40px; border-top: 1px solid #333;">
+            Redimensione a janela para ver o layout se adaptar responsivamente!
+        </p>
+    </div>
+</body>
+</html>
