@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+header {
+    background-color: #166534;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 48px;
+}
+
+nav ul {
+    display: flex;
+    gap: 24px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.125em;
+}
+
+nav ul li a:hover {
+    color: #D1FAE5;
+    text-decoration: underline;
+}
+/* ----- Q2 ------ */
+
+.painel {
+    background: linear-gradient(to right, #047857, #064E3B);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.painel h2 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.painel p {
+    font-size: 1.25em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 32px auto;
+}
+
+.painel .links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.painel .links a {
+    padding: 12px 32px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 9999px;
+}
+
+.painel .links a:first-child {
+    background-color: white;
+    color: #166534;
+    border: 2px solid #166534;
+}
+
+.painel .links a:first-child:hover {
+    background-color: #E5E7EB;
+}
+
+.painel .links a:last-child {
+    border: 2px solid white;
+    color: white;
+}
+
+.painel .links:last-child a:last-child:hover {
+    background-color: white;
+    color: #166534;
+}
+
+/* ----- Q3 ------ */
+.nossos-cursos {
+    background-color: #F3F4F6;
+    padding: 64px 0;
+}
+
+.nossos-cursos h2 {
+    font-size: 2.25em;
+    font-weight: bold;
+    text-align: center;
+    color: #166534;
+    margin-bottom: 48px;
+}
+
+.cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.curso-card {
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgb(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+
+.curso-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgb(0, 0, 0, 0.1);
+}
+
+.curso-card h3 {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #0f7857;
+    margin-bottom: 8px;
+}
+
+.curso-card p {
+    color: #4B5563;
+}
